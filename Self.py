@@ -5,7 +5,7 @@ from pathlib import Path
 
 # Manually define a list of blacklisted numbers
 BLACKLIST = [
-    "52680070", "20966973", "51690273","03854069","02488471","80144618"# Add numbers you want to block
+    "52680070", "20966973", "51690273", "03854069", "02488471", "80144618"
 ]
 
 # Determine the correct storage path for QR codes
@@ -13,11 +13,14 @@ if sys.platform.startswith("linux") and "ANDROID_STORAGE" in os.environ:
     # Android (Termux)
     USER_PICTURES_PATH = Path.home() / "storage/shared/Pictures/Generated_QRCodes"
 elif sys.platform.startswith("win"):
-    # Windows
-    USER_PICTURES_PATH = Path.home() / "Pictures" / "Generated_QRCodes"
+    # Windows (Store in a parent folder)
+    USER_PICTURES_PATH = Path(__file__).resolve().parent.parent / "Generated_QRCodes"
+elif sys.platform.startswith("linux") or sys.platform.startswith("darwin"):
+    # Linux/macOS (Store in a parent folder relative to the script's directory)
+    USER_PICTURES_PATH = Path(__file__).resolve().parent.parent / "Generated_QRCodes"
 else:
-    # Linux/macOS
-    USER_PICTURES_PATH = Path(__file__).parent / "Generated_QRCodes"
+    # Default to home directory if unknown platform
+    USER_PICTURES_PATH = Path.home() / "Generated_QRCodes"
 
 # Ensure the directory exists
 os.makedirs(USER_PICTURES_PATH, exist_ok=True)
