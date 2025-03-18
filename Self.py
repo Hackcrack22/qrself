@@ -58,7 +58,7 @@ def generate_unique_codes(count, generate_qr=False):
     generated_codes = []
 
     while len(generated_codes) < count:
-        new_code = str(random.randint(10000000, 99999999))  # Generate an 8-digit number
+        new_code = str(random.randint(0, 99999999)).zfill(8)  # Generate an 8-digit number
         if new_code not in existing_codes and new_code not in BLACKLIST:
             save_code(new_code)
             generated_codes.append(new_code)
