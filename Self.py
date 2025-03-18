@@ -5,7 +5,7 @@ from pathlib import Path
 
 # Manually define a list of blacklisted numbers
 BLACKLIST = [
-    "52680070", "20966973", "51690273", "03854069", "02488471", "80144618"
+    "52680070", "20966973", "51690273", "03854069", "02488471", "80144618","02276578"
 ]
 
 # Determine the correct storage path for QR codes
